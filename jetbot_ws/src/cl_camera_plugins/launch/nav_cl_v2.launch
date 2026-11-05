@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<launch>
+	<include file="$(find jetbot_pro)/launch/jetbot.launch" />
+
+  <include file="$(find jetbot_pro)/launch/lidar.launch" />
+
+  <include file="$(find jetbot_pro)/launch/csi_camera.launch" /> 
+
+	
+	<arg default="$(find jetbot_pro)/maps/mymap.yaml" name="map_file" />
+	<node args="$(arg map_file)" name="map_server" pkg="map_server" type="map_server" />
+
+	
+	<include file="$(find jetbot_pro)/launch/amcl.launch" />
+    
+	
+	<include file="$(find cl_camera_plugins)/launch/move_base_cl_v2.launch" />
+  
+</launch>

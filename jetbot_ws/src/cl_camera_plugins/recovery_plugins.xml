@@ -1,0 +1,5 @@
+<library path="lib/libcl_camera_plugins">
+  <class name="cl_camera_plugins/CameraTurnRecovery" type="cl_camera_plugins::CameraTurnRecovery" base_class_type="nav_core::RecoveryBehavior">
+    <description>Clearance-checked turning that exits on fresh consecutive camera-free messages.</description>
+  </class>
+</library>

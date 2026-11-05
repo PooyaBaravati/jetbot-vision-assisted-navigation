@@ -1,0 +1,5 @@
+<library path="lib/libcl_camera_plugins">
+  <class name="cl_camera_plugins/ExpiringCameraLayer" type="cl_camera_plugins::ExpiringCameraLayer" base_class_type="costmap_2d::Layer">
+    <description>Bounded temporary camera-obstacle layer for local or global costmaps.</description>
+  </class>
+</library>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <node
+        pkg="jetbot_mission"
+        type="ros_scene_perception.py"
+        name="ros_scene_perception"
+        output="screen"
+        respawn="false"
+    />
+
+    <node
+        pkg="jetbot_mission"
+        type="camera_virtual_scan.py"
+        name="camera_virtual_scan"
+        output="screen"
+        respawn="false"
+    />
+
+</launch>

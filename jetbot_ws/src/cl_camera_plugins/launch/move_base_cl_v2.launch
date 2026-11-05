@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<launch>
+  <node clear_params="true" name="move_base" output="screen" pkg="move_base" respawn="true" type="move_base">
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/costmap_common_params.yaml" ns="global_costmap" />
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/costmap_common_params.yaml" ns="local_costmap" />
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/local_costmap_camera_params.yaml" />
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/camera_costmap_params.yaml" ns="local_costmap" />
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/global_costmap_params.yaml" />
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/teb_local_planner_params.yaml" />
+    
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/base_global_planner_param.yaml" />
+    <rosparam command="load" file="$(find jetbot_pro)/config/diff/move_base_params.yaml" />
+  
+    
+    <param name="TebLocalPlannerROS/footprint_model/type" value="circular" />
+    <param name="TebLocalPlannerROS/footprint_model/radius" value="0.12" />
+    <param name="TebLocalPlannerROS/enable_homotopy_class_planning" value="false" />
+
+  <rosparam param="local_costmap/plugins">- name: static_layer
+  type: costmap_2d::StaticLayer
+- name: obstacle_layer
+  type: costmap_2d::VoxelLayer
+- name: camera_obstacle_layer
+  type: cl_camera_plugins/ExpiringCameraLayer
+- name: inflation_layer
+  type: costmap_2d::InflationLayer
+</rosparam><param name="local_costmap/camera_obstacle_layer/obstacle_ttl" value="5.0" /><param name="local_costmap/camera_obstacle_layer/camera_timeout" value="1.0" /><param name="local_costmap/camera_obstacle_layer/scan_timeout" value="0.75" /><param name="camera_turn/free_frames" value="5" /><param name="camera_turn/turn_speed" value="0.6" /><param name="camera_turn/camera_timeout" value="1.0" /><param name="camera_turn/costmap_timeout" value="0.75" /><param name="camera_turn/max_duration" value="10.0" /><param name="camera_turn/turn_margin" value="0.08" /><rosparam param="recovery_behaviors">
+- {name: camera_turn, type: "cl_camera_plugins/CameraTurnRecovery"}
+- {name: conservative_reset, type: "clear_costmap_recovery/ClearCostmapRecovery"}
+- {name: camera_turn_retry, type: "cl_camera_plugins/CameraTurnRecovery"}
+</rosparam><param name="TebLocalPlannerROS/no_inner_iterations" value="3" /><param name="TebLocalPlannerROS/max_global_plan_lookahead_dist" value="1.5" /><param name="TebLocalPlannerROS/no_outer_iterations" value="2" /><param name="TebLocalPlannerROS/obstacle_poses_affected" value="3" /><param name="GlobalPlanner/use_dijkstra" value="true" /><param name="GlobalPlanner/use_grid_path" value="false" /><param name="GlobalPlanner/publish_potential" value="false" /><param name="GlobalPlanner/use_quadratic" value="false" /><param name="TebLocalPlannerROS/min_obstacle_dist" value="0.10" /><rosparam param="global_costmap/plugins">
+- {name: static_layer, type: "costmap_2d::StaticLayer"}
+- {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+- {name: camera_global_layer, type: "cl_camera_plugins/ExpiringCameraLayer"}
+- {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+</rosparam><param name="local_costmap/camera_obstacle_layer/transition_only" value="false" /><param name="global_costmap/camera_global_layer/obstacle_ttl" value="15.0" /><param name="global_costmap/camera_global_layer/camera_timeout" value="1.0" /><param name="global_costmap/camera_global_layer/scan_timeout" value="0.75" /><param name="global_costmap/camera_global_layer/transition_only" value="false" /><param name="camera_turn/free_handoff_delay" value="2.5" /><param name="camera_turn_retry/free_frames" value="5" /><param name="camera_turn_retry/turn_speed" value="0.6" /><param name="camera_turn_retry/camera_timeout" value="1.0" /><param name="camera_turn_retry/costmap_timeout" value="0.75" /><param name="camera_turn_retry/max_duration" value="10.0" /><param name="camera_turn_retry/turn_margin" value="0.08" /><param name="camera_turn_retry/free_handoff_delay" value="2.5" /><param name="local_costmap/camera_obstacle_layer/mark_radius" value="0.0" /><param name="global_costmap/camera_global_layer/mark_radius" value="0.0" /><param name="local_costmap/camera_obstacle_layer/preserve_on_reset" value="false" /><param name="global_costmap/camera_global_layer/preserve_on_reset" value="true" />
+  <param name="TebLocalPlannerROS/max_vel_theta" value="1.20" />
+  <param name="TebLocalPlannerROS/max_vel_x" value="0.30" />
+  <param name="TebLocalPlannerROS/max_vel_x_backwards" value="0.15" />
+  <param name="TebLocalPlannerROS/penalty_epsilon" value="0.05" />
+
+  <param name="global_costmap/inflation_layer/cost_scaling_factor" value="5.0" />
+  <param name="global_costmap/inflation_layer/inflation_radius" value="0.35" />
+</node>
+  
+</launch>
