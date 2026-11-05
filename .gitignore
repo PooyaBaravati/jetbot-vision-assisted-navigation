@@ -1,0 +1,42 @@
+# catkin / ROS build outputs
+build/
+devel/
+install/
+logs/
+log/
+*.log
+*.bag
+*.db3
+
+# Python / notebooks
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Model weights and binary export files: review licensing before adding
+*.pth
+*.pt
+*.onnx
+*.caffemodel
+*.engine
+*.uff
+
+# Datasets, local laboratory maps and media: review before publishing
+*.pgm
+*.bag.active
+raw_dataset/
+dataset/
+private_maps/
+
+# Environment / credentials
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+
+# OS
+.DS_Store
+Thumbs.db
