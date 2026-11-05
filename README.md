@@ -72,6 +72,34 @@ The camera is **not** a depth sensor: the 0.40 m virtual obstacle range is a del
 
 **What worked:** The vision pipeline, temporary camera obstacle integration, and some revised global-route selections were observed in the lab. **What was not established:** A controlled goal-completion rate, collision-free reliability, robust replanning across environments, a final classification confusion matrix, or end-to-end latency statistics.
 
+## Experimental demonstrations
+
+The following screenshots were extracted from the project handover manual and weekly progress reports. They document specific laboratory sessions, **not** controlled success-rate or safety benchmarks.
+
+### 1. LiDAR navigation and localization
+
+![RViz occupancy map, AMCL pose hypotheses and live LiDAR observations](assets/images/lidar-amcl-localization.jpg)
+
+*Week 2 report, Figure 5 — AMCL localization on the saved laboratory map with LiDAR observations. This shows the working LiDAR-based navigation foundation, before the CL camera extension.*
+
+### 2. Camera-based scene perception
+
+![ROS camera view with FREE classification, probabilities and MobileNet SSD object detection boxes](assets/images/camera-scene-perception.jpg)
+
+*Week 4 report — OpenCV DNN scene perception: ResNet18 estimates FREE/BLOCKED (here FREE: 0.87) while Caffe MobileNet SSD labels detected objects. The classifier does not estimate obstacle distance.*
+
+### 3. CL costmap integration and recovery
+
+![RViz costmap, blocked camera overlay and CL recovery diagnostic messages](assets/images/cl-costmap-recovery.jpg)
+
+*JetBot Technical Handover Manual, page 22, Figure 8 (reproduced from Week 5) — development test showing camera-based costmap evidence and a recovery waiting condition. The planner also reported infeasible trajectories. **This is evidence of the mechanism and its limitations, not a successful avoidance trial.***
+
+### 4. Global-path and costmap diagnostics
+
+![RViz global path and numerical costmap diagnostic during CL development](assets/images/cl-path-diagnostics.jpg)
+
+*Week 5 report, Figure 2 — one sampled path with 56 poses, maximum nearby reported cost 85, zero sampled poses beside lethal cells, and 28 poses in significant inflation. These figures describe one diagnostic snapshot, not overall route quality.*
+
 ## Key retained settings
 
 | Setting | Experimental value |
